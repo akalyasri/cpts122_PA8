@@ -3,6 +3,9 @@ using std::cout;
 using std::endl;
 
 
+// practing inheritance beforehand
+/*
+
 class abstractBase{ // pure vitrual
 
 public:
@@ -56,6 +59,18 @@ int main(void) {
 
 
 	std::cout << "Hello World" << std::endl;
+
+
+
+}
+
+*/
+
+
+
+int main(void) {
+
+
 
 
 
