@@ -6,7 +6,7 @@ public:
 
 	}
 
-	TransactionNode(int newUnits) {
+	TransactionNode(string newData, int newUnits) {
 
 
 	}
