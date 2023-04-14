@@ -62,7 +62,7 @@ public:
 		return mpRight;
 	}
 
-	virtual void printData(void);
+	virtual void printData(void) = 0;
 
 
 protected:

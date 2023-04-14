@@ -1,4 +1,4 @@
-#include "Node.hpp"
+#include "TransactionNode.hpp"
 
 class BST {
 public:
@@ -6,7 +6,7 @@ public:
 	~BST() {
 
 		// calls destroy tree 
-
+		destroyTree(mpRoot);
 	}
 	
 	BST() {
@@ -29,7 +29,7 @@ public:
 
 	void inOrderTraversal(void) {
 		//calls privae inOrderTraversal function
-		inOrder(mpRoot);
+		privateTraversal(mpRoot);
 		
 	}
 
@@ -37,22 +37,37 @@ public:
 private:
 	Node* mpRoot;
 
-	void destroyTree() {
+	void destroyTree(Node* current) {
 		// should visit each node in postOrder to delete them
-	}
 
-	void insert(Node* root, int key) {
+		if (current != nullptr) {
+			destroyTree(current->getLeftPtr());
+			destroyTree(current->getRightPtr());
 
-		/*it dynamically allocates a TransactionNode and inserts recursively in the correct subtree based on
-		mUnits; should pass in a reference to a pointer(i.e.Node * &pT)*/
-
-		if (root == nullptr) {
-			return new Node()
+			delete current;
 		}
 
 	}
 
-	void inOrder(Node*root) {
+	void privateInsert(Node*& root, int newUnits, string newData) {
+
+		/*it dynamically allocates a TransactionNode and inserts recursively in the correct subtree based on
+		mUnits; should pass in a reference to a pointer(i.e.Node * &pT)*/
+	
+		if (root == nullptr) {
+			//return new Node()
+			root = new TransactionNode(newData, newUnits);
+		}
+		else if(newUnits > ((TransactionNode*)root)->getUnits()){
+			privateInsert(root->getRightPtr(),newUnits,newData);
+		}
+		else if (newUnits > ((TransactionNode*)root)->getUnits()) {
+			privateInsert(root->getLeftPtr(), newUnits, newData);
+		}
+
+	}
+
+	void privateTraversal(Node*root) {
 		/*which recursively visits and prints the contents(mData and mUnits) of each node 
 		in the tree in order; each node’s printData() should be called*/
 
@@ -61,9 +76,9 @@ private:
 			return;
 		}
 
-		inOrder(root->getLeftPtr());
+		privateTraversal(root->getLeftPtr());
 		root->printData();
-		inOrder(root->getRightPtr());
+		privateTraversal(root->getRightPtr());
 
 	}
 

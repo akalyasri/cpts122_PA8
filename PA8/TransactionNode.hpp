@@ -3,12 +3,12 @@
 class TransactionNode : Node{
 public:
 	~TransactionNode() {
-
+		//mUnits = 0;
 	}
 
-	TransactionNode(string newData, int newUnits) {
+	TransactionNode(string &newData, int newUnits) {
 
-
+		mUnits = newUnits;
 	}
 
 	void setUnits(int newUnits) {
