@@ -1,12 +1,11 @@
-#include <iostream>
 
 #include "DataAnalysis.hpp"
-using std::cout;
-using std::endl;
+
 
 
 
 // practing inheritance beforehand
+
 /*
 
 class abstractBase{ // pure vitrual
