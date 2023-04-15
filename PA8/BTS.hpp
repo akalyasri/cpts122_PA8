@@ -36,12 +36,17 @@ public:
 
 	TransactionNode*& findLargest(void) {
 
+		TransactionNode* largestNode = dynamic_cast<TransactionNode*>(privateMax(mpRoot));
 
+		return largestNode;
 
 	}
 
 	TransactionNode*& findSmallest(void) {
 
+		TransactionNode* smallestNode = dynamic_cast<TransactionNode*>(privateMin(mpRoot));
+
+		return smallestNode;
 
 
 	}

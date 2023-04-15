@@ -31,7 +31,7 @@ public:
 		mpRight = nullptr;
 	}
 
-	virtual ~Node() = 0;
+	virtual ~Node() { ; }
 	
 
 	Node(string& newData) {
@@ -52,7 +52,7 @@ public:
 		mpRight = newRight;
 	}
 
-	string getData(void) {
+	string getData(void) const {
 		return mData;
 	}
 
@@ -65,6 +65,14 @@ public:
 	}
 
 	virtual void printData(void) = 0;
+
+	Node& operator = (Node& copy) {
+		this->mData = copy.mData;
+		this->mpLeft = copy.mpLeft;
+		this->mpRight = copy.mpRight;
+
+		return *this;
+	}
 
 
 protected:

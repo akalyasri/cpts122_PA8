@@ -8,7 +8,7 @@ public:
 		mUnits = 0;
 	}
 
-	TransactionNode(string &newData, int newUnits) {
+	TransactionNode(string &newData, int newUnits) : Node(newData){
 
 		mUnits = newUnits;
 	}

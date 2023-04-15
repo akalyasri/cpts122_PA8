@@ -12,7 +12,7 @@ public:
 
 	~DataAnalysis() {
 
-		closeFile();
+		//closeFile();
 
 	}
 
@@ -22,9 +22,11 @@ public:
 
 		openFile();
 
-		readFile();
+		readFile(mCsvStream);
 
 		displayTrends();
+
+		closeFile();
 
 
 	}
@@ -48,45 +50,49 @@ private:
 
 
 	// courtesy of www.geeksforgeeks.org/getline-string-c/
-	void readOneLine(istringstream& line, int& units, string& type, string& status) { 
+	void readOneLine(string& line, int& units, string& type, string& status) { 
 
 	/*	A function that reads one line from the file and splits the line into units, type,
 		and transaction fields*/
 		
 		string temp;
 
-		getline(line, temp, ',');
-		istringstream(temp) >> units;
+		stringstream ss(line);
 
-		getline(line, temp, ',');
-		istringstream(temp) >> type;
+		getline(ss, temp, ',');
 
-		getline(line, temp, ',');
-		istringstream(temp) >> status;
+		units = stoi(temp);
 
-
+		getline(ss, type, ',');
+		getline(ss, status, ',');
 
 	}
 
-	void readFile(void) {
+	void readFile(ifstream& stream) {
 
 	/*	A function that loops until all lines are read from the file; calls the function
 		below, and then displays the current contents of both BSTs; use inOrderTraversal() to
 		display the trees*/
 
 		string line;
+		string type;
+		string status;
+		int units = 0;
 
 		//read header line
 		getline(mCsvStream, line);
 
+		while (!mCsvStream.eof()) {
 
-		while(getline(mCsvStream, line)){
+			getline(mCsvStream, line);
+			readOneLine(line, units, type, status);
 
+			TransactionNode* newNode = new TransactionNode(type, units);
 
-
-
+			compareANDinsert(units, type, status);
 
 		}
+		
 
 	}
 
