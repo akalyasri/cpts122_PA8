@@ -75,11 +75,11 @@ private:
 		else if(newUnits > ((TransactionNode*)root)->getUnits()){
 			privateInsert(root->getRightPtr(),newUnits,newData);
 		}
-		else if (newUnits > ((TransactionNode*)root)->getUnits()) {
+		else if (newUnits < ((TransactionNode*)root)->getUnits()) {
 			privateInsert(root->getLeftPtr(), newUnits, newData);
 		}else
 		{
-
+			cout << "Duplicate Value" << endl;
 		}
 
 	}

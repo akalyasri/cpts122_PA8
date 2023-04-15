@@ -1,6 +1,9 @@
 #include <iostream>
+
+#include "DataAnalysis.hpp"
 using std::cout;
 using std::endl;
+
 
 
 // practing inheritance beforehand
@@ -70,8 +73,10 @@ int main(void) {
 
 int main(void) {
 
+	DataAnalysis app;
+
+	app.runAnalysis();
 
 
-
-
+	return 0;
 }
