@@ -22,6 +22,9 @@ public:
 
 		openFile();
 
+		readFile();
+
+		displayTrends();
 
 
 	}
@@ -115,7 +118,33 @@ private:
 			and the most purchased and sold*/
 
 
+		TransactionNode* leastPurchased = mTreePurchased.findSmallest();
+		TransactionNode* leastSold = mTreeSold.findSmallest();
 
+		TransactionNode* mostPurchased = mTreePurchased.findLargest();
+		TransactionNode* mostSold = mTreeSold.findLargest();
+
+
+		cout << endl << "Least Purchased: " << endl;
+		cout << "Type: " << leastPurchased->getData() << endl;
+		cout << "Units: " << leastPurchased->getUnits() << endl;
+
+
+
+		cout << endl << "Least Sold:" << endl;
+		cout << "Type: " << leastSold->getData() << endl;
+		cout << "Units: " << leastSold->getUnits() << endl;
+
+
+		cout << endl << "Most Purchased:" << endl;
+		cout << "Type: " << mostPurchased->getData() << endl;
+		cout << "Units: " << mostPurchased->getUnits() << endl;
+
+
+
+		cout << endl << "Most Sold" << endl;
+		cout << "Type: " << mostSold->getData() << endl;
+		cout << "Units: " << mostSold->getUnits() << endl;
 
 		
 
