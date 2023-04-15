@@ -49,7 +49,6 @@ private:
 	}
 
 
-	// courtesy of www.geeksforgeeks.org/getline-string-c/
 	void readOneLine(string& line, int& units, string& type, string& status) { 
 
 	/*	A function that reads one line from the file and splits the line into units, type,
