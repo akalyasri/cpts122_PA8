@@ -1,4 +1,5 @@
 #include "BTS.hpp"
+using std::istringstream;
 
 class DataAnalysis {
 
@@ -19,6 +20,9 @@ public:
 
 		//this function calls the other private functions
 
+		openFile();
+
+
 
 	}
 
@@ -29,63 +33,33 @@ private:
 	BST mTreePurchased;
 	ifstream mCsvStream;
 
-	void openFile(void) {
+	ifstream& openFile(void) {
 		mCsvStream.open("data.csv");
+
+		return mCsvStream;
 	}
 
 	void closeFile(void) {
 		mCsvStream.close();
 	}
 
-	void readOneLine(void) {
+
+	// courtesy of www.geeksforgeeks.org/getline-string-c/
+	void readOneLine(istringstream& line, int& units, string& type, string& status) { 
 
 	/*	A function that reads one line from the file and splits the line into units, type,
 		and transaction fields*/
 		
-		int newUnits = 0;
-		string newType;
-		string status;
+		string temp;
 
-		string line;
+		getline(line, temp, ',');
+		istringstream(temp) >> units;
 
-		getline(mCsvStream, line);
+		getline(line, temp, ',');
+		istringstream(temp) >> type;
 
-			string temp;
-			stringstream ss(line);
-			int fieldIndex = 0;
-
-			while (getline(ss, temp, ',')) {
-
-				switch (fieldIndex) {
-
-				case 0:
-					//units
-
-					break;
-
-				case 1:
-					//type
-
-					break;
-
-				case 2:
-					//transaction status
-
-					//insert to BST
-					break;
-
-				default:
-
-					break;
-
-				}
-
-				fieldIndex++;
-
-			}
-
-
-		
+		getline(line, temp, ',');
+		istringstream(temp) >> status;
 
 
 	}
@@ -98,6 +72,10 @@ private:
 
 		string line;
 
+		//read header line
+		getline(mCsvStream, line);
+
+
 		while(getline(mCsvStream, line)){
 
 
@@ -108,11 +86,23 @@ private:
 
 	}
 
-	void compareInsert(void) {
+	void compareANDinsert(int units, string type, string status) {
+
 
 		//A function that compares the transaction field and inserts the units and type
 		//	into the appropriate tree(mTreeSold or mTreePurchased) // note with the way the
 		//	data.csv file is organized the trees will be fairly balanced
+
+		if (status == "Sold") {
+			mTreeSold.insert(units, type);
+		}
+		else if (status == "Purchased") {
+			mTreePurchased.insert(units, type);
+		}
+		else {
+			cout << "Error. Check code." << endl;
+		}
+
 
 
 	}
@@ -123,6 +113,11 @@ private:
 		/*A function that writes to the screen the trends we see in our tree; the
 			function must display the type and number of units that are least purchased and sold,
 			and the most purchased and sold*/
+
+
+
+
+		
 
 
 	}

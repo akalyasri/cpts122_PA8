@@ -27,12 +27,14 @@ class Node {
 public:
 
 	Node() {
-
+		mpLeft = nullptr;
+		mpRight = nullptr;
 	}
 
-	virtual ~Node();
+	virtual ~Node() = 0;
+	
 
-	Node(string newData) {
+	Node(string& newData) {
 		mData = newData;
 		mpLeft = nullptr;
 		mpRight = nullptr;
@@ -54,11 +56,11 @@ public:
 		return mData;
 	}
 
-	Node* getLeftPtr(void) {
+	Node*& getLeftPtr(void) {
 		return mpLeft;
 	}
 
-	Node* getRightPtr(void) {
+	Node*& getRightPtr(void) {
 		return mpRight;
 	}
 

@@ -1,9 +1,11 @@
 #include "Node.hpp"
 
-class TransactionNode : Node{
+class TransactionNode : public Node{
 public:
-	~TransactionNode() {
-		//mUnits = 0;
+	~TransactionNode() {;}
+
+	TransactionNode() {
+		mUnits = 0;
 	}
 
 	TransactionNode(string &newData, int newUnits) {

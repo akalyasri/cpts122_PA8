@@ -11,20 +11,21 @@ public:
 	
 	BST() {
 
-
+		mpRoot = nullptr;
 	}
 
-	void setRoot(Node* newRoot) {
+	void setRoot(TransactionNode*& newRoot) {
 		mpRoot = newRoot;
 	}
 
-	Node* getRoot(void) {
+	Node*& getRoot(void) {
 		return mpRoot;
 	}
 
-	void insert() {
+	void insert(int newUnits, string newData) {
 		/*public used to hide pointer information, i.e.won’t pass in the
 			root of the tree into this function, only the private insert() function*/
+		privateInsert(mpRoot, newUnits, newData);
 	}
 
 	void inOrderTraversal(void) {
@@ -33,11 +34,24 @@ public:
 		
 	}
 
+	TransactionNode*& findLargest(void) {
+
+
+
+	}
+
+	TransactionNode*& findSmallest(void) {
+
+
+
+	}
+
+
 
 private:
 	Node* mpRoot;
 
-	void destroyTree(Node* current) {
+	void destroyTree(Node*& current) {
 		// should visit each node in postOrder to delete them
 
 		if (current != nullptr) {
@@ -63,11 +77,14 @@ private:
 		}
 		else if (newUnits > ((TransactionNode*)root)->getUnits()) {
 			privateInsert(root->getLeftPtr(), newUnits, newData);
+		}else
+		{
+
 		}
 
 	}
 
-	void privateTraversal(Node*root) {
+	void privateTraversal(Node*&root) {
 		/*which recursively visits and prints the contents(mData and mUnits) of each node 
 		in the tree in order; each node’s printData() should be called*/
 
@@ -77,11 +94,25 @@ private:
 		}
 
 		privateTraversal(root->getLeftPtr());
-		root->printData();
+		((TransactionNode*)root)->printData();
 		privateTraversal(root->getRightPtr());
 
 	}
 
+	Node* privateMax(Node*& pTree) {
 
+		if (pTree->getRightPtr() == nullptr) {
+			return pTree;
+		}
+		privateMax(pTree->getRightPtr());
+			
+	}
 
+	Node* privateMin(Node*& pTree) {
+
+		if (pTree->getLeftPtr() == nullptr) {
+			return pTree;
+		}
+		privateMin(pTree->getLeftPtr());
+	}
 };
