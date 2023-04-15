@@ -1,7 +1,4 @@
-
 #include "DataAnalysis.hpp"
-
-
 
 
 // practing inheritance beforehand
